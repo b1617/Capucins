@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use App\Entity\Entreprise;
+use App\Entity\Tuteur;
 class EntrepriseController extends Controller
 {
     /**
@@ -83,6 +84,41 @@ class EntrepriseController extends Controller
         $cp = $e->getCodePostale();
         $adresse = $e->getAdresse();
         return $nom."+".$ville."+".$cp."+".$adresse;
+
+    }
+    /**
+     * @Route("/entreprise/information/addtuteur/{id}", name="addTuteur")
+     */
+    public function addTuteur(Request $request,$id){
+        $repository = $this->getDoctrine()->getRepository(Entreprise::class);
+        $entreprise = $repository->find($id);
+
+        // creates a task and gives it some dummy data for this example
+        $tuteur = new Tuteur();
+
+        $form = $this->createFormBuilder($tuteur)
+            ->add('nomTuteur', TextType::class)
+            ->add('prenomTuteur', TextType::class)
+            ->add('mailTuteur', TextType::class)
+            ->add('telTuteur', NumberType::class)
+            ->add('Ajouter', SubmitType::class, array('label' => 'Ajouter'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $tuteur = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $tuteur->setIdEntreprise($entreprise->getId());
+            $entityManager->persist($tuteur);
+            $entityManager->flush();
+            return $this->redirectToRoute('entreprise');
+        }
+        return $this->render('entreprise/addtuteur.html.twig', array(
+            'form' => $form->createView(), 'entreprise' => $entreprise,
+        ));
 
     }
 

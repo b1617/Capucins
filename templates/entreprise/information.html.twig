@@ -15,6 +15,7 @@
     {% block banner %}
         <div id="banner">
             <h2> {{ info.nomEntreprise }} </h2>
+            <a href="./addtuteur/{{ info.id }}" class="button big icon fa-check-circle">Ajouter un tuteur</a>
         </div>
     {% endblock %}
 {% block body %}
@@ -26,7 +27,7 @@
                     <div class="row">
                         <div class="9 12u(mobile)">
                             <iframe
-                                    width="750"
+                                    width="700"
                                     height="450"
                                     frameborder="0" style="border:0"
                                     src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCsUXkMZMOQ0HOtBLNS2NCu2g-MPrVw-vU
