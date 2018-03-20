@@ -1,0 +1,55 @@
+{% extends './base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+{% block navbar %}
+    <nav id="nav" xmlns:https="http://www.w3.org/1999/xhtml" xmlns:https="http://www.w3.org/1999/xhtml"
+         xmlns:https="http://www.w3.org/1999/xhtml">
+        <ul>
+            <li><a href="../../index">Home</a></li>
+            <li><a href="../../entreprise">Liste des entreprises</a></li>
+            <li><a href="../../stage">J'ai un stage!</a></li>
+            <li><a href="../../#">Aide</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+    {% block banner %}
+        <div id="banner">
+            <h2> {{ info.nomEntreprise }} </h2>
+        </div>
+    {% endblock %}
+{% block body %}
+    <div id="main-wrapper">
+        <div class="wrapper style2">
+            <div class="inner">
+                <!-- Feature 2 -->
+                <section class="container box feature1">
+                    <div class="row">
+                        <div class="9 12u(mobile)">
+                            <iframe
+                                    width="750"
+                                    height="450"
+                                    frameborder="0" style="border:0"
+                                    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCsUXkMZMOQ0HOtBLNS2NCu2g-MPrVw-vU
+                                      &origin={{ adresseCapucins }}
+                                        &destination={{ adresseEntreprise }}
+                                &avoid=tolls&mode=driving">
+                            </iframe>
+                        </div>
+                        <div class="3 12u(mobile)">
+                           <h3>
+                            {{ info.nomEntreprise }} <br> {{ info.adresse }} <br> {{ info.codePostale}} , {{ info.ville }} <br> {{ info.activite }} <br> {{ info.tel }}
+
+                           </h3>
+
+                        </div>
+
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

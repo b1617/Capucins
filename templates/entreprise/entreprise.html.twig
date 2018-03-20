@@ -1,0 +1,74 @@
+{% extends './base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+{% block banner %}   <!-- Banner -->
+    <div id="banner">
+        <h2> Liste des entreprises </h2>
+        <a href="./entreprise/add" class="button big icon fa-check-circle">Ajouter une entreprise</a>
+    </div>
+{% endblock %}
+{% block body %}
+    <div id="main-wrapper">
+        <div class="wrapper style1">
+            <div class="inner">
+                <!-- Feature 2 -->
+                <section class="container box feature1">
+                    <div class="row">
+                        <div class="12u 12u(mobile)">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td>
+                                        Nom
+                                    </td>
+                                    <td>
+                                        Ville
+                                    </td>
+                                    <td>
+                                        CP
+                                    </td>
+                                    <td>
+                                        Adresse
+                                    </td>
+                                    <td>
+                                        Téléphone
+                                    </td>
+                                    <td>
+                                        Activité
+                                    </td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for entreprise in entreprises %}
+                                    <tr>
+                                        <td>
+                                           <a href="./entreprise/information/{{ entreprise.id }}" style=text-decoration:none;color:darkblue>{{ entreprise.nomEntreprise }} </a>
+                                        </td>
+                                        <td>
+                                            {{ entreprise.ville }}
+                                        </td>
+                                        <td>
+                                            {{ entreprise.codePostale }}
+                                        </td>
+                                        <td>
+                                            {{ entreprise.adresse }}
+                                        </td>
+                                        <td>
+                                            {{ entreprise.tel }}
+                                        </td>
+                                        <td>
+                                            {{ entreprise.activite }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

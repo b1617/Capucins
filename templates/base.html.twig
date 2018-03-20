@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <!--[if lte IE 8]>
+        <script src="{{ asset('assets/js/ie/html5shiv.js') }}"></script><![endif]-->
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"/>
+        <!--[if lte IE 9]>
+        <link rel="stylesheet" href="{{ asset('assets/css/ie9.css') }}"/><![endif]-->
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{{ asset('assets/css/ie8.css') }}"/><![endif]-->
+    {% endblock %}
+</head>
+<body>
+
+{% block header %}
+<div id="page-wrapper">
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <header id="header">
+                <div class="inner">
+
+                    <!-- Logo -->
+                    <h1><a href="#" id="logo">Collège Les Capucins</a></h1>
+
+                    <!-- Nav -->
+                    {% block navbar %}
+
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="index">Home</a></li>
+                            <li><a href="entreprise">Liste des entreprises</a></li>
+                            <li><a href="stage">J'ai un stage!</a></li>
+                            <li><a href="#">Aide</a></li>
+                        </ul>
+                    </nav>
+                    {% endblock %}
+                </div>
+            </header>
+            {% block banner %}{% endblock %}
+        </div>
+    </div>
+        {% endblock %}
+
+        {% block body %}
+
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/skel.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
+            <script src="{{ asset('assets/js/util.js') }}"></script>
+            <!--[if lte IE 8]>
+            <script src="{{ asset('assets/js/ie/respond.min.js') }}"></script><![endif]-->
+            <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        {% endblock %}
+    {% block footer %}
+    <!-- Footer Wrapper -->
+    <div id="footer-wrapper">
+        <footer id="footer" class="container">
+            <div class="row">
+                <div class="12u">
+                    <div id="copyright">
+                        <ul class="menu">
+                            <li>&copy; Untitled. All rights reserved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
