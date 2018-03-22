@@ -4,7 +4,7 @@
 {% block banner %}   <!-- Banner -->
     <div id="banner">
         <h2> Liste des entreprises </h2>
-        <a href="./entreprise/add" class="button big icon fa-check-circle">Ajouter une entreprise</a>
+        <a href={{ path ('addEntreprise' , {'id' : id}) }}> <button class="button big icon fa-check-circle"> Ajouter une entreprise </button></a>
     </div>
 {% endblock %}
 {% block body %}
@@ -43,7 +43,7 @@
                                 {% for entreprise in entreprises %}
                                     <tr>
                                         <td>
-                                           <a href="./entreprise/information/{{ entreprise.id }}" style=text-decoration:none;color:darkblue>{{ entreprise.nomEntreprise }} </a>
+                                           <a href={{ path('information' , {'idEntreprise' : entreprise.id , 'id' : id}) }} style=text-decoration:none;color:darkblue>{{ entreprise.nomEntreprise }} </a>
                                         </td>
                                         <td>
                                             {{ entreprise.ville }}

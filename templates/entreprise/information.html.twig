@@ -1,21 +1,12 @@
 {% extends './base.html.twig' %}
 
 {% block title %}Hello!{% endblock %}
-{% block navbar %}
-    <nav id="nav" xmlns:https="http://www.w3.org/1999/xhtml" xmlns:https="http://www.w3.org/1999/xhtml"
-         xmlns:https="http://www.w3.org/1999/xhtml">
-        <ul>
-            <li><a href="../../index">Home</a></li>
-            <li><a href="../../entreprise">Liste des entreprises</a></li>
-            <li><a href="../../stage">J'ai un stage!</a></li>
-            <li><a href="../../#">Aide</a></li>
-        </ul>
-    </nav>
-{% endblock %}
     {% block banner %}
         <div id="banner">
             <h2> {{ info.nomEntreprise }} </h2>
-            <a href="./addtuteur/{{ info.id }}" class="button big icon fa-check-circle">Ajouter un tuteur</a>
+            <a href={{ path('addTuteur' , { 'idEntreprise' : info.id , 'id' : id}) }}>
+                <button class="button big icon fa-check-circle"> Ajouter un tuteur</button>
+            </a>
         </div>
     {% endblock %}
 {% block body %}
@@ -37,16 +28,16 @@
                             </iframe>
                         </div>
                         <div class="4 12u(mobile)">
-                           <h3>
-                            {{ info.nomEntreprise }} <br> {{ info.adresse }} <br> {{ info.codePostale}} , {{ info.ville }} <br> {{ info.activite }} <br> {{ info.tel }}
+                            <h3>
+                                {{ info.nomEntreprise }} <br> {{ info.adresse }} <br> {{ info.codePostale }}
+                                , {{ info.ville }} <br> {{ info.activite }} <br> {{ info.tel }}
 
-                           </h3>
+                            </h3>
 
                         </div>
 
                     </div>
                 </section>
-
 
 
             </div>

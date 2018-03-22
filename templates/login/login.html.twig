@@ -4,8 +4,8 @@
 {% block banner %}   <!-- Banner -->
     <div id="banner">
         <h2> Login </h2>
-        <a href="./login/1" class="button big icon fa-check-circle">Elève</a>
-        <a href="./login/2" class="button big icon fa-check-circle">Prof</a>
+        <a href={{ path('login', {'id': 1}) }}> <button  class="button big icon fa-check-circle"> >Elève </button> </a>
+        <a href={{ path('login', {'id': 2}) }}><button  class="button big icon fa-check-circle"> >Prof </button></a>
     </div>
 {% endblock %}
 {% block navbar %}

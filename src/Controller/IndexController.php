@@ -10,12 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/" , name="default")
      */
-    public function home()
+    public function default()
     {
         return $this->render('login/login.html.twig', [
-            'controller_name' => 'IndexController',
+            'controller_name' => 'login',
         ]);
     }
 

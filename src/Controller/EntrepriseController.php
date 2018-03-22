@@ -33,11 +33,34 @@ class EntrepriseController extends Controller
         ]);
     }
 
+
+    // TODO
+    /**
+     * @Route("/consulter", name="consulter")
+     */
+    public function consulter(Request $request)
+    {
+        $id = $request->query->get('id', 100);
+        if ($id <= 2 && !$id == null){
+            $repository = $this->getDoctrine()->getRepository(Entreprise::class);
+            $entreprises = $repository->findAll();
+            return $this->render('entreprise/entreprise.html.twig', [
+                'entreprises' => $entreprises, 'id' => $id,
+            ]);
+        }
+        return $this->render('login/login.html.twig', [
+            'controller_name' => 'login',
+        ]);
+    }
+
     /**
      * @Route("/entreprise/add", name="addEntreprise")
      */
     public function addEntreprise(Request $request)
     {
+
+        //
+        $id = $request->query->get('id',0);
 
         // creates a task and gives it some dummy data for this example
         $entreprise = new Entreprise();
@@ -64,24 +87,25 @@ class EntrepriseController extends Controller
              $entityManager->persist($entreprise);
              $entityManager->flush();
             // return $this->render('/entreprise/information/'.$entreprise->getId());
-            return $this->redirectToRoute('entreprise');
+            return $this->redirectToRoute('information', array('idEntreprise' => $entreprise->getId() , 'id' => $id));
         }
         return $this->render('entreprise/add.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'id'=>$id
         ));
     }
 
     /**
-     * @Route("/entreprise/information/{id}", name="information")
+     * @Route("/entreprise/information/{idEntreprise}/{id}", name="information")
      */
-    public function information($id) {
+    public function information($idEntreprise,$id) {
+
         $repository = $this->getDoctrine()->getRepository(Entreprise::class);
-        $entreprise = $repository->find($id);
+        $entreprise = $repository->find($idEntreprise);
 
         $adresseCapucins = "College+Les+Capucins,+Route+de+Voisenon,+77000+Melun";
         $adresseEntreprise = $this->getAdresseEntreprise($entreprise);
         return $this->render('entreprise/information.html.twig', [
-            'info' => $entreprise, "adresseCapucins" => $adresseCapucins, "adresseEntreprise" => $adresseEntreprise,
+            'info' => $entreprise, "adresseCapucins" => $adresseCapucins, "adresseEntreprise" => $adresseEntreprise,'id'=>$id
         ]);
     }
 
@@ -94,11 +118,13 @@ class EntrepriseController extends Controller
 
     }
     /**
-     * @Route("/entreprise/information/addtuteur/{id}", name="addTuteur")
+     * @Route("/entreprise/information/addtuteur/{idEntreprise}/{id}", name="addTuteur")
      */
-    public function addTuteur(Request $request,$id){
+    public function addTuteur(Request $request,$idEntreprise,$id){
+
+
         $repository = $this->getDoctrine()->getRepository(Entreprise::class);
-        $entreprise = $repository->find($id);
+        $entreprise = $repository->find($idEntreprise);
 
         // creates a task and gives it some dummy data for this example
         $tuteur = new Tuteur();
@@ -121,10 +147,10 @@ class EntrepriseController extends Controller
             $tuteur->setIdEntreprise($entreprise->getId());
             $entityManager->persist($tuteur);
             $entityManager->flush();
-            return $this->redirectToRoute('entreprise');
+            return $this->redirectToRoute('information', array('idEntreprise' => $idEntreprise , 'id' => $id));
         }
         return $this->render('entreprise/addtuteur.html.twig', array(
-            'form' => $form->createView(), 'entreprise' => $entreprise,
+            'form' => $form->createView(), 'entreprise' => $entreprise, 'id'=>$id
         ));
 
     }

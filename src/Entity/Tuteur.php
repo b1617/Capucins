@@ -35,7 +35,7 @@ class Tuteur
     private $telTuteur;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entreprise")
+     * @ORM\ManyToOne(targetEntity="Entreprise")
      * @ORM\JoinColumn(name="idEntreprise",referencedColumnName="id")
      * @ORM\Column(type="integer")
      */
