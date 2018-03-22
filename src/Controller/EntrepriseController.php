@@ -18,12 +18,18 @@ class EntrepriseController extends Controller
     /**
      * @Route("/entreprise", name="entreprise")
      */
-    public function index()
+    public function index(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Entreprise::class);
-        $entreprises = $repository->findAll();
-        return $this->render('entreprise/entreprise.html.twig', [
-            'entreprises' => $entreprises,
+        $id = $request->query->get('id', 100);
+        if ($id <= 2 && !$id == null){
+            $repository = $this->getDoctrine()->getRepository(Entreprise::class);
+            $entreprises = $repository->findAll();
+            return $this->render('entreprise/entreprise.html.twig', [
+                'entreprises' => $entreprises, 'id' => $id,
+            ]);
+        }
+        return $this->render('login/login.html.twig', [
+            'controller_name' => 'login',
         ]);
     }
 
@@ -57,6 +63,7 @@ class EntrepriseController extends Controller
              $entreprise->setActive(1);
              $entityManager->persist($entreprise);
              $entityManager->flush();
+            // return $this->render('/entreprise/information/'.$entreprise->getId());
             return $this->redirectToRoute('entreprise');
         }
         return $this->render('entreprise/add.html.twig', array(

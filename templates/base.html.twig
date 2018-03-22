@@ -33,9 +33,13 @@
 
                     <nav id="nav">
                         <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="entreprise">Liste des entreprises</a></li>
-                            <li><a href="stage">J'ai un stage!</a></li>
+                            <li><a href="../index?id={{ id }}">Home</a></li>
+                            <li><a href="../entreprise?id={{ id }}">Liste des entreprises</a></li>
+                            {% if id == 1 %}
+                            <li><a href="../stage?id={{ id }}">J'ai un stage!</a></li>
+                            {% else %}
+                            <li><a href="../consulter?id={{ id }}">Consulter les stages</a></li>
+                            {% endif %}
                             <li><a href="#">Aide</a></li>
                         </ul>
                     </nav>
