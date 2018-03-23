@@ -152,8 +152,5 @@ class EntrepriseController extends Controller
         return $this->render('entreprise/addtuteur.html.twig', array(
             'form' => $form->createView(), 'entreprise' => $entreprise, 'id'=>$id
         ));
-
     }
-
-
 }

@@ -12,7 +12,6 @@ class LoginController extends Controller
      */
     public function login($id)
     {
-        var_dump($id);
         return $this->render('index/index.html.twig', [
             'id' => $id,
         ]);

@@ -19,7 +19,7 @@ class Stage
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Eleve")
+     * @ORM\ManyToOne(targetEntity="Eleve")
      * @ORM\JoinColumn(name="idUserEleve",referencedColumnName="id")
      * @ORM\Column(type="integer")
      */
@@ -33,7 +33,7 @@ private $idUserEleve;
 private $idUserProf;
 
     /**
-     *  @ORM\OneToOne(targetEntity="Tuteur")
+     *  @ORM\ManyToOne(targetEntity="Tuteur")
      * @ORM\JoinColumn(name="idTuteur",referencedColumnName="id")
      * @ORM\Column(type="integer")
      */
