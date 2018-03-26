@@ -36,13 +36,12 @@
                             <li><a href={{ path('index', {'id': id}) }}>Home</a></li>
                             <li><a href={{ path('entreprise', {'id': id}) }}>Liste des entreprises</a></li>
                             {% if id == 1 %}
-                            <li><a href={{ path('entreprise', {'id': id}) }}>J'ai un stage!</a></li>
+                            <li><a href={{ path('stage', {'id': id}) }}>J'ai un stage!</a></li>
                                 <li> <i class="fas fa-user" style="color:red;"></i> <i style="color:red;">Elève</i>  </li>
                             {% else %}
                             <li><a href={{ path('consulter', {'id': id}) }}>Consulter les stages</a></li>
                                 <li> <i class="fas fa-user" style="color:red;"></i> <i style="color: red;">Professeur</i>  </li>
                             {% endif %}
-
                         </ul>
                     </nav>
                     {% endblock %}

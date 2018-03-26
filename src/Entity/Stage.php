@@ -17,27 +17,23 @@ class Stage
     private $id;
 
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Eleve")
-     * @ORM\JoinColumn(name="idUserEleve",referencedColumnName="id")
-     * @ORM\Column(type="integer")
+     * @ORM\JoinColumn(name="idEleve",referencedColumnName="id")
      */
-private $idUserEleve;
+private $eleve;
 
     /**
-     * @ORM\OneToOne(targetEntity="Prof")
-     * @ORM\JoinColumn(name="idUserProf",referencedColumnName="id")
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Prof")
+     * @ORM\JoinColumn(name="idProf",referencedColumnName="id")
      */
-private $idUserProf;
+private $prof;
 
     /**
      *  @ORM\ManyToOne(targetEntity="Tuteur")
      * @ORM\JoinColumn(name="idTuteur",referencedColumnName="id")
-     * @ORM\Column(type="integer")
      */
-private $idTuteur;
+private $tuteur;
 
     /**
      * @ORM\Column(type="date")
@@ -63,49 +59,49 @@ private $dateStage;
     /**
      * @return mixed
      */
-    public function getIdUserEleve()
+    public function getEleve()
     {
-        return $this->idUserEleve;
+        return $this->eleve;
     }
 
     /**
-     * @param mixed $idUserEleve
+     * @param mixed $eleve
      */
-    public function setIdUserEleve($idUserEleve): void
+    public function setEleve($eleve): void
     {
-        $this->idUserEleve = $idUserEleve;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdUserProf()
-    {
-        return $this->idUserProf;
-    }
-
-    /**
-     * @param mixed $idUserProf
-     */
-    public function setIdUserProf($idUserProf): void
-    {
-        $this->idUserProf = $idUserProf;
+        $this->eleve = $eleve;
     }
 
     /**
      * @return mixed
      */
-    public function getIdTuteur()
+    public function getProf()
     {
-        return $this->idTuteur;
+        return $this->prof;
     }
 
     /**
-     * @param mixed $idTuteur
+     * @param mixed $prof
      */
-    public function setIdTuteur($idTuteur): void
+    public function setProf($prof): void
     {
-        $this->idTuteur = $idTuteur;
+        $this->prof = $prof;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTuteur()
+    {
+        return $this->tuteur;
+    }
+
+    /**
+     * @param mixed $tuteur
+     */
+    public function setTuteur($tuteur): void
+    {
+        $this->tuteur = $tuteur;
     }
 
     /**

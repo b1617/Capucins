@@ -1,0 +1,61 @@
+{% extends './base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+{% block banner %}   <!-- Banner -->
+    <div id="banner">
+        <h2> Liste des stages </h2>
+    </div>
+{% endblock %}
+{% block body %}
+    <div id="main-wrapper">
+        <div class="wrapper style1">
+            <div class="inner">
+                <!-- Feature 2 -->
+                <section class="container box feature1">
+                    <div class="row">
+                        <div class="12u 12u(mobile)">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td>
+                                        Nom
+                                    </td>
+                                    <td>
+                                        Prenom
+                                    </td>
+                                    <td>
+                                        Entreprise
+                                    </td>
+                                    <td>
+                                        Téléphone
+                                    </td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for stage in stages %}
+                                    <tr>
+                                        <td>
+                                            {{ stage.tuteur.nomTuteur }}
+                                        </td>
+                                        <td>
+                                            {{ stage.tuteur.prenomTuteur }}
+                                        </td>
+                                        <td>
+                                            {{ stage.tuteur.entreprise.nomEntreprise }}
+                                        </td>
+                                        <td>
+                                            {{ stage.tuteur.telTuteur }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

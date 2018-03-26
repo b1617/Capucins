@@ -37,10 +37,9 @@ class Tuteur
     /**
      * @ORM\ManyToOne(targetEntity="Entreprise")
      * @ORM\JoinColumn(name="idEntreprise",referencedColumnName="id")
-     * @ORM\Column(type="integer")
      */
 
-    private $idEntreprise;
+    private $entreprise;
 
     /**
      * @return mixed
@@ -125,17 +124,18 @@ class Tuteur
     /**
      * @return mixed
      */
-    public function getIdEntreprise()
+    public function getEntreprise()
     {
-        return $this->idEntreprise;
+        return $this->entreprise;
     }
 
     /**
-     * @param mixed $idEntreprise
+     * @param mixed $entreprise
      */
-    public function setIdEntreprise($idEntreprise): void
+    public function setEntreprise($entreprise): void
     {
-        $this->idEntreprise = $idEntreprise;
+        $this->entreprise = $entreprise;
     }
+
 
 }

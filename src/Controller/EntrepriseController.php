@@ -115,13 +115,11 @@ class EntrepriseController extends Controller
         $cp = $e->getCodePostale();
         $adresse = $e->getAdresse();
         return $nom."+".$ville."+".$cp."+".$adresse;
-
     }
     /**
      * @Route("/entreprise/information/addtuteur/{idEntreprise}/{id}", name="addTuteur")
      */
     public function addTuteur(Request $request,$idEntreprise,$id){
-
 
         $repository = $this->getDoctrine()->getRepository(Entreprise::class);
         $entreprise = $repository->find($idEntreprise);
@@ -144,7 +142,7 @@ class EntrepriseController extends Controller
             // but, the original `$task` variable has also been updated
             $tuteur = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $tuteur->setIdEntreprise($entreprise->getId());
+            $tuteur->setEntreprise($entreprise);
             $entityManager->persist($tuteur);
             $entityManager->flush();
             return $this->redirectToRoute('information', array('idEntreprise' => $idEntreprise , 'id' => $id));

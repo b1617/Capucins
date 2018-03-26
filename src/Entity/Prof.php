@@ -29,24 +29,58 @@ class Prof
     private $prenomProf;
 
     /**
-     * @ORM\Column(type="string")
+     * @return mixed
      */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-    private $login;
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomProf()
+    {
+        return $this->nomProf;
+    }
+
+    /**
+     * @param mixed $nomProf
+     */
+    public function setNomProf($nomProf): void
+    {
+        $this->nomProf = $nomProf;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenomProf()
+    {
+        return $this->prenomProf;
+    }
+
+    /**
+     * @param mixed $prenomProf
+     */
+    public function setPrenomProf($prenomProf): void
+    {
+        $this->prenomProf = $prenomProf;
+    }
+
     /**
      * @ORM\Column(type="string")
      */
-    private $password;
 
-    /**
-     * @ORM\Column(type="string")
-     */
 
-    private $role;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
 
-    private $present;
 }

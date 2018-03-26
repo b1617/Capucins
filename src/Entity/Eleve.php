@@ -28,35 +28,58 @@ class Eleve
      * @ORM\Column(type="string")
      */
     private $prenomEleve;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomEleve()
+    {
+        return $this->nomEleve;
+    }
+
+    /**
+     * @param mixed $nomEleve
+     */
+    public function setNomEleve($nomEleve): void
+    {
+        $this->nomEleve = $nomEleve;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenomEleve()
+    {
+        return $this->prenomEleve;
+    }
+
+    /**
+     * @param mixed $prenomEleve
+     */
+    public function setPrenomEleve($prenomEleve): void
+    {
+        $this->prenomEleve = $prenomEleve;
+    }
     /**
      * @ORM\Column(type="string")
      */
 
-    private $classeEleve;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $anneeScolaire;
-    /**
-     * @ORM\Column(type="string")
-     */
 
-    private $login;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-
-    private $role;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-
-    private $present;
 }
 
