@@ -19,16 +19,13 @@ class TuteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Tuteur::class);
     }
 
-    /*
-    public function findBySomething($value)
+
+    public function findEntrepriseByTuteurId($id)
     {
         return $this->createQueryBuilder('t')
-            ->where('t.something = :value')->setParameter('value', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('t.entreprise = :id')->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 }

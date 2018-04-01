@@ -8,6 +8,7 @@
         <!--[if lte IE 8]>
         <script src="{{ asset('assets/js/ie/html5shiv.js') }}"></script><![endif]-->
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--[if lte IE 9]>
         <link rel="stylesheet" href="{{ asset('assets/css/ie9.css') }}"/><![endif]-->
         <!--[if lte IE 8]>
@@ -31,42 +32,48 @@
                     <!-- Nav -->
                     {% block navbar %}
 
-                    <nav id="nav">
-                        <ul>
-                            <li><a href={{ path('index', {'id': id}) }}>Home</a></li>
-                            <li><a href={{ path('entreprise', {'id': id}) }}>Liste des entreprises</a></li>
-                            {% if id == 1 %}
-                            <li><a href={{ path('stage', {'id': id}) }}>J'ai un stage!</a></li>
-                                <li> <i class="fas fa-user" style="color:red;"></i> <i style="color:red;">Elève</i>  </li>
-                            {% else %}
-                            <li><a href={{ path('consulter', {'id': id}) }}>Consulter les stages</a></li>
-                                <li> <i class="fas fa-user" style="color:red;"></i> <i style="color: red;">Professeur</i>  </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
+                        <nav id="nav">
+                            <ul>
+                                <li><a href={{ path('index', {'id': id}) }}>Home</a></li>
+                                <li><a href={{ path('entreprise', {'id': id}) }}>Liste des entreprises</a></li>
+                                {% if id == 1 %}
+                                    <li><a href={{ path('stage', {'id': id}) }}>J'ai un stage!</a></li>
+                                    <li><i class="fas fa-user" style="color:red;"></i> <i style="color:red;">Elève</i>
+                                    </li>
+                                {% else %}
+                                    <li><a href={{ path('consulter', {'id': id}) }}>Consulter les stages</a></li>
+                                    <li><i class="fas fa-user" style="color:red;"></i> <i
+                                                style="color: red;">Professeur</i></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                     {% endblock %}
                 </div>
             </header>
             {% block banner %}{% endblock %}
         </div>
     </div>
-        {% endblock %}
+    {% endblock %}
 
-        {% block body %}
+    {% block body %}
 
-        {% endblock %}
-        {% block javascripts %}
-            <script src="{{ asset('assets/js/skel.min.js') }}"></script>
-            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-            <script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
-            <script src="{{ asset('assets/js/util.js') }}"></script>
-            <!--[if lte IE 8]>
-            <script src="{{ asset('assets/js/ie/respond.min.js') }}"></script><![endif]-->
-            <script src="{{ asset('assets/js/main.js') }}"></script>
-            <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
-            <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('assets/js/skel.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
+        <script src="{{ asset('assets/js/util.js') }}"></script>
+        <!--[if lte IE 8]>
+        <script src="{{ asset('assets/js/ie/respond.min.js') }}"></script><![endif]-->
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"
+                integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+                crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"
+                integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+                crossorigin="anonymous"></script>
 
-        {% endblock %}
+    {% endblock %}
     {% block footer %}
     <!-- Footer Wrapper -->
     <div id="footer-wrapper">
@@ -86,4 +93,28 @@
 {% endblock %}
 
 </body>
+<script>
+    $(document).ready(function () {
+        $('#form_entreprise').change(function () {
+            // to get the selected value
+            var selected = $(this).val()
+            console.log(selected);
+            $.ajax({
+                url: "/entreprise/tuteur",
+                method: "POST",
+                data: {idEntreprise: selected},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var option = "";
+                    for ($i = 0; $i < data.length; ++$i) {
+                        option += "<option value=" + data[$i].id + ">" + data[$i].nomTuteur+ " " + data[$i].prenomTuteur + "</option>";
+                    }
+                    $('#form_tuteur').html(option);
+                }
+            })
+        });
+    });
+
+</script>
 </html>

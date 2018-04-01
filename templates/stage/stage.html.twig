@@ -7,19 +7,28 @@
         </div>
     {% endblock %}
 {% block body %}
-    <div id="main-wrapper">
-        <div class="wrapper style2">
-            <div class="inner">
-                <!-- Feature 2 -->
-                <section class="container box feature1">
-                    <div class="row">
-                        <div class="12u 12u(mobile)">
-                            {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            {{ form_end(form) }}
-                        </div>
+<div id="main-wrapper">
+    <div class="wrapper style2">
+        <div class="inner">
+            <!-- Feature 2 -->
+
+            <section class="container box feature1">
+                <div class="row">
+
+                    <div class="12u 12u(mobile)">
+                        <h2> Entreprise </h2>
+                        <select class="form-control" id="form_entreprise">
+                            {% for entreprise in entreprises %}
+                                <option value="{{ entreprise.id }}"> {{ entreprise.nomEntreprise }}</option>
+                            {% endfor %}
+                        </select> <br/><br/><br/>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
                     </div>
-                </section>
+                </div>
+            </section>
+
             </div>
         </div>
     </div>
